@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define Max 18
-#define Min 8
+#define Max 18*60
+#define Min 8*60
 #define SIZE 50
 /*
  * Konvertiert zwei zahlen in ein einheitliches zeit format zum sortieren
@@ -46,7 +46,7 @@ int main(void)
     while(1){
         fgets(buffer,100,stdin);
         if(sscanf(buffer,"%d:%d %d:%d %*s",&beginHour,&beginMinute,&endHour,&endMinute)==4){
-            if(counter<=SIZE&&beginHour>=Min&&endHour<=Max)
+            if(counter<=SIZE&&beginHour>=Min/60&&endHour<=Max/60)
             {
                 begin[counter]=toMinutes(beginHour,beginMinute);
                 end[counter]=toMinutes(endHour,endMinute);
@@ -64,11 +64,11 @@ int main(void)
     sort(end,counter);
     position=search(begin,end,counter);
     if(position==-1){
-        beginHour=Min*60;
-        freetime=begin[0]-Min*60;
+        beginHour=Min;
+        freetime=begin[0]-Min;
     }else if(position==counter){
         beginHour=end[position];
-        freetime=(Max*60)-end[position];
+        freetime=(Max)-end[position];
     }else{
         beginHour=end[position];
         freetime=begin[position+1]-end[position];
@@ -105,15 +105,20 @@ void sort(int list[], size_t size){
 int search(int list[], int list2[], size_t size){
     int i=0;
     int position=-1;
-    int free=list[0]-Min*60;
-    for (i = 1; i < size; i++) {
+    int free=list[0]-Min;
+    if(list[0]==Min&&list2[0]==Max){
+        return position=-1;
+    }
+    if(size>1){
+    for (i = 0; i < size; i++) {
         if(free<list[i]-list2[i-1])
         {
             free=list[i]-list2[i-1];
             position=i;
         }
     }
-    if(free<((Max*60)-list2[i])){
+    }
+    if(free<((Max)-list2[i])){
         position=size;
     }
     return position;
