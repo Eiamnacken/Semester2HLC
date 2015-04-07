@@ -53,7 +53,7 @@ int main(void)
                 counter++;
             }else
             {
-                printf("Sie haben nur platz fuer 50 eintraege ziwschen 8 und 18 Uhr.\n");
+                printf("Sie haben nur platz f\u00fcr 50 eintraege ziwschen 8 und 18 Uhr.\n");
             }
         }else{
             printf("Ende\n");
@@ -63,8 +63,18 @@ int main(void)
     sort(begin,counter);
     sort(end,counter);
     position=search(begin,end,counter);
+    if(position==-1){
+        beginHour=Min*60;
+        freetime=begin[0]-Min*60;
+    }else if(position==counter){
+        beginHour=end[position];
+        freetime=(Max*60)-end[position];
+    }else{
+        beginHour=end[position];
+        freetime=begin[position+1]-end[position];
+    }
 
-    printf("Programmieren II bearbeiten um %d f\u00fcr \br %d Minuten\n",beginHour/60,freetime);
+    printf("Programmieren II bearbeiten um %d f\u00fcr %d Minuten\n",beginHour/60,freetime);
    
 
 }
@@ -94,7 +104,7 @@ void sort(int list[], size_t size){
 
 int search(int list[], int list2[], size_t size){
     int i=0;
-    int position=0;
+    int position=-1;
     int free=list[0]-Min*60;
     for (i = 1; i < size; i++) {
         if(free<list[i]-list2[i-1])
