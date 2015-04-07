@@ -1,19 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define Max 20
+#define Max 18
 #define Min 8
 #define SIZE 50
-
+/*
+ * Konvertiert zwei zahlen in ein einheitliches zeit format zum sortieren
+ * @param   h1 Die stunde die zu konvertieren ist
+ * @param   m1 Doie minute die zu konvertieren ist
+ * @return  Die minuten anzahl der beiden zahlen
+*/
 int toMinutes(int h1, int m1);
 
+/*
+ * durchsucht die Liste nach der groessten freien zeit
+ * @param   list    Die liste mit den anfangszeiten
+ * @param   list2   Die liste mit den endzeiten
+ * @param   size    Die groesse der listeneinraege
+ * @return  Die stelle in list2 wo die meiste freie Zeit vorhanden ist
+ *
+*/
 int search(int list[],int list2[],size_t size);
 
+/*
+ * Sortiert eine Liste mittels bubblesort
+ * @param   list    list Die liste die zu sortieren ist
+ * @param   size    Die anzahl an eintreagen
+*/
 void sort(int list[],size_t size);
-
-void swap(int *x,int *y);
-
-
 
 int main(void)
 {
@@ -22,6 +36,7 @@ int main(void)
     int beginHour=0;
     int beginMinute=0;
     int endHour=0;
+    int position=0;
     int endMinute=0;
     int counter =0;
     int freetime=0;
@@ -47,12 +62,11 @@ int main(void)
     }
     sort(begin,counter);
     sort(end,counter);
-    beginHour=end[search(begin,end,counter)];
-    freetime=(counter==search(begin,end,counter)?(Max*60)-beginHour:begin[(search(begin,end,counter))+1]-beginHour);
-    printf("Programmieren II bearbeiten um %d f\x81 \br %d Minuten\n",beginHour/60,freetime);
+    position=search(begin,end,counter);
+
+    printf("Programmieren II bearbeiten um %d f\u00fcr \br %d Minuten\n",beginHour/60,freetime);
    
-    //sort(minutes,0,size);
-    //Listen werden auf den Stack gespeichert
+
 }
 
 int toMinutes(int h1, int m1){
@@ -61,28 +75,22 @@ int toMinutes(int h1, int m1){
     return end;
 }
 
-/*void sort(int list[][], int i, size_t size){
-
-}*/
-
-
 void sort(int list[], size_t size){
     int i,j;
+    int tmp=0;
     for(i=0;i<size-1;i++){
         for (j  = 0;  j< size-(i+1); j++) {
             if(list[j]>list[j+1]){
-                swap(list[j],list[j+1]);
+                tmp=list[j];
+                list[j]=list[j+1];
+                list[j+1]=tmp;
             }
         }
     }
 
 }
 
-void swap(int *x, int *y){
-   int tmp = *x;
-   *x=*y;
-   *y=tmp;
-}
+
 
 int search(int list[], int list2[], size_t size){
     int i=0;
@@ -96,7 +104,6 @@ int search(int list[], int list2[], size_t size){
         }
     }
     if(free<((Max*60)-list2[i])){
-        free=((Max*60)-list2[i]);
         position=size;
     }
     return position;
