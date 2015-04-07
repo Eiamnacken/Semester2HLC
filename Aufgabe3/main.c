@@ -31,8 +31,8 @@ void sort(int list[],size_t size);
 
 int main(void)
 {
-    int begin[SIZE];
-    int end[SIZE];
+    int begin[SIZE]={0};
+    int end[SIZE]={0};
     int beginHour=0;
     int beginMinute=0;
     int endHour=0;
@@ -67,8 +67,8 @@ int main(void)
         beginHour=Min;
         freetime=begin[0]-Min;
     }else if(position==counter){
-        beginHour=end[position];
-        freetime=(Max)-end[position];
+        beginHour=end[position-1];
+        freetime=(Max)-end[position-1];
     }else{
         beginHour=end[position];
         freetime=begin[position+1]-end[position];
@@ -105,21 +105,18 @@ void sort(int list[], size_t size){
 int search(int list[], int list2[], size_t size){
     int i=0;
     int position=-1;
-    int free=list[0]-Min;
+    int freetime=list[0]-Min;
     if(list[0]==Min&&list2[0]==Max){
-        return position=-1;
-    }
-    if(size>1){
-    for (i = 0; i < size; i++) {
-        if(free<list[i]-list2[i-1])
-        {
-            free=list[i]-list2[i-1];
-            position=i;
+        return -1;
+    }if(size>1){
+        for(i=0;i<size;i++){
+            if(freetime<(list[i+1]-list2[i])){
+                freetime=(list[i+1]-list2[i]);
+                position=i;
+            }
         }
-    }
-    }
-    if(free<((Max)-list2[i])){
-        position=size;
+    }if(freetime<(Max-list2[size-1])){
+        return size;
     }
     return position;
 }
