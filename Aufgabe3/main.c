@@ -74,7 +74,7 @@ int main(void)
         freetime=begin[position+1]-end[position];
     }
 
-    printf("Programmieren II bearbeiten um %d f\u00fcr %d Minuten\n",beginHour/60,freetime);
+    printf("Programmieren II bearbeiten um %d:%d f\u00fcr %d Minuten\n",beginHour/60,beginHour%60,freetime);
    
 
 }
