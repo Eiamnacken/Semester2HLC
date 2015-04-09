@@ -3,9 +3,19 @@
 #include <ceasar.h>
 
 #define MAX 27
-
+/*
+ * Speichert die Buchstaben häufigkeit in einem Array
+ * @param   buffer  Der buchstabe der gespeichert werden soll
+ * @param   counts  Speichert die einzelnen buchstaben
+ * @param   often   Speichert die haeufigkeit der Buchstaben
+*/
 void findMostUsed(char buffer,char counts[],int often[]);
 
+/*
+ * Rechnet die Differenz die gebraucht wird um den haeufigsten Buchstaben(in deutsch e)
+ * in den Ursprungszustand zu bringen
+ * @param   letter  Der buchstabe der in e gewandelt werden soll
+*/
 int diffE(char letter);
 
 void rasaec(char string[]){

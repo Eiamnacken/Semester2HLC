@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <ceasar.h>
 #include <anacae.h>
+
+/*
+ * Tauscht ein \n newline durch eine end notation \0
+ * @param   string  Der text in dem das  newline getaushct wird
+ * @param   size    Die groesse des Strings
+*/
 void changeNewLineIEnd(char string[],size_t size);
 
 int main(int argc, char *argv[])
