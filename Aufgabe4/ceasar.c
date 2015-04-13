@@ -16,13 +16,9 @@ void ceasar(char text[], char offset){
                     if(text[i]==90){
                         text[i]=65;
                         text[i]-=1;
-
-
                     }if(text[i]==122){
                         text[i]=97;
                         text[i]-=1;
-
-
                     }
                         text[i]+=1;
                 }

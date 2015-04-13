@@ -29,7 +29,7 @@ int main(void)
         printf("Der betrag des Vektors(%dy,%dx,%dz) betreagt: ",dimension1,dimension2,dimension3);
         printf("%f\n",vektor(dimension1,dimension2,dimension3));
     }else{
-        printf("Falsche eingabe");
+        printf("Falsche eingabe\n");
     }
 
     return 0;

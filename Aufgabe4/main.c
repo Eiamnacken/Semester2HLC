@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <ceasar.h>
 #include <anacae.h>
+//#define string longtext
 void changeNewLineIEnd(char string[],size_t size);
 
 int main(int argc, char *argv[])
 {
     char buffer[100];
-    char string[101];
+    char string[100];
+    char nothing[400];
     int offset=0;
     char decision;
     size_t size = sizeof(string)/sizeof(char);
@@ -17,9 +19,11 @@ int main(int argc, char *argv[])
         switch(decision){
         case '1':{
             printf("\n");
-            printf("Bitte geben sie ihren Satz ein der verschl\u00fcsselt werden soll:");
-            fgets(string,101,stdin);
+            printf("Bitte geben sie ihren Satz ein der verschl\u00fcsselt werden soll");
+            printf("Es werden allerdings nur 100 zeichen eingelesen: ");
             fgets(string,100,stdin);
+            fgets(string,100,stdin);
+            sscanf(string,"%*s",string);
             changeNewLineIEnd(string,size);
             printf("Bitte gebe sie an um wie viel sie verschl\u00fcsseln m\u00f6chten: ");
             fgets(buffer,100,stdin);
@@ -32,11 +36,13 @@ int main(int argc, char *argv[])
             printf("Bitte geben sie ihren zu entschl\u00fcsselnden Satz ein: \n");
             fgets(string,100,stdin);
             fgets(string,100,stdin);
+            sscanf(string,"%*s",string);
             char longText[]="Xl ptk xbg lmktaexgw-dtemxk Tikbemtz, ngw wbx Nakxg lvaenzxgwkxbsxag.Pbglmhg Lfbma, wtl Dbgg tg wbx Uknlm zxshzxg, nf wxf lvaxnllebvaxg Pbgw sn xgmzxaxg, lvaenxiymx ktlva wnkva wbx Zetlmnxkxg wxk Obvmhkr Fbxmldtlxkgx, whva gbvam ktlva zxgnz, nf sn oxkabgwxkg, wtll fbm baf tnva xbg zkbxllbzxk Lmtnupbkuxe axkxbgpxamx.";
-            changeNewLineIEnd(longText,sizeof(longText)/sizeof(char));
-            rasaec(longText);
+            changeNewLineIEnd(string,sizeof(string)/sizeof(char));
+            rasaec(string);
             printf("Der enschl\u00fcsselte Text:\n");
-            printf("%s",longText);
+            printf("%s",string);
+
         }
             break;
 
@@ -50,6 +56,7 @@ int main(int argc, char *argv[])
             break;
         }
     }while(decision!='0');
+    return 0;
 
 
 }
