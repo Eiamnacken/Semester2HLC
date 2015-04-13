@@ -1,14 +1,20 @@
 #include <stdio.h>
 #include <ceasar.h>
 #include <anacae.h>
-//#define string longtext
+
+
+
+/*
+ * Tauscht ein \n newline durch eine end notation \0
+ * @param   string  Der text in dem das  newline getaushct wird
+ * @param   size    Die groesse des Strings
+*/
 void changeNewLineIEnd(char string[],size_t size);
 
 int main(int argc, char *argv[])
 {
     char buffer[100];
     char string[100];
-    char nothing[400];
     int offset=0;
     char decision;
     size_t size = sizeof(string)/sizeof(char);
