@@ -12,7 +12,7 @@ void changeNewLineIEnd(char string[],size_t size);
 int main(int argc, char *argv[])
 {
     char buffer[100];
-    char string[101];
+    char string[100];
     int offset=0;
     char decision;
     size_t size = sizeof(string)/sizeof(char);
