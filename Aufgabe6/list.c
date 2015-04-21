@@ -50,7 +50,12 @@ int listdeleteitem(char **list,char*item,int*count){
     return 0;
 }
 
-
+void listprint(char **list,int count){
+   int i=0;
+   for(i=0;i<count;i++){
+       printf("%s\n",list[i]);
+   }
+}
 
 
 
