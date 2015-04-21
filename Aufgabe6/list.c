@@ -1,20 +1,23 @@
 #include <stdlib.h>
 #include <string.h>
 
+int getSize(char *item);
+
 int listadditem(char ** list,char*item,int*count,int capacity){
-        if(count==capacity){//Erst prüfen ob noch platz vorhanden ist
+    int size = getSize(item);
+        if(*count==capacity){//Erst prüfen ob noch platz vorhanden ist
             if(NULL==(list=realloc(list,(capacity+3)*sizeof(char)))){
                 return -1;
             }
 
         }
         //Speicher alloziieren für den String
-        if(NULL==(list[count]=malloc(sizeof(item)/sizeof(char))*sizeof(char))){
+        if(NULL==(list[*count]=malloc(size*sizeof(char)))){
             return -1;
         }
-        //Checkn ob Ite schon vorhanden ist
+        //Checkn ob Item schon vorhanden ist
         if(!(listfinditem(list,item,count))){
-            strcpy(list[count],item);
+            strcpy(list[*count],item);
             *count=*count+1;
             return 1;//Erfolgreiches Einfügen
         }
@@ -25,7 +28,7 @@ int listfinditem(char **list,char *item,int count){
     int i =0;
     for(i=0;i<count;i++){
         //Vergleichen bis gefunden anonsten
-        if(strcmp(list[i],count)){
+        if(strcmp(list[i],item)){
             return i;
         }
     }
@@ -35,18 +38,15 @@ int listfinditem(char **list,char *item,int count){
 
 int listdeleteitem(char **list,char*item,int*count){
     int find=0;
-    int i=0;
+    unsigned int i=0;
     //Wenn item nicht in der Liste
-    if((find=listfinditem(list,item,count))>=0){
+    if((find=listfinditem(list,item,*count))>=0){
         //Ab dem gefundenem item alle Items einen nach unten schieben letztes wird dann freigegeben
-        for(i=find;i<count-1;i++){
+        for(i=find;i<*count-1;i++){
             strcpy(list[i],list[i+1]);
         }
-        for(i=0;i<sizeof(list[count])/sizeof(char);i++){
-            free(list[count][i]);
-        }
-        free(list[count]);
-        list[count]=NULL;
+        free(list[*count]);
+        list[*count]=NULL;
         *count=*count-1;
         return 1;
     }
@@ -61,14 +61,19 @@ void listprint(char **list,int count){
    }
 }
 
-void listfreealltimes(char **list,int count){
+void listfreeallitems(char **list,int count){
     int i=0;
-    int j=0;
     for(i=0;i<count;i++){
-        for(j=0;j<sizeof(list[i])/sizeof(char);j++){
-            free(list[i][j]);
-        }
+       free(list[i]);
     }
+}
+
+int getSize(char *item){
+    int i=0;
+    while(item[i]!='\0'){
+        i++;
+    }
+    return i;
 }
 
 

@@ -31,7 +31,10 @@ int main(void) {
 	int count = 0; //Anzahl der Eintraege in der Playlist
 	int capacity = 3; // Kapazitaet des Array
 
-	list = calloc(capacity, sizeof(char*)); // Speicher fuer das Array auf dem Heap allozieren
+    if(NULL==(list = calloc(capacity, sizeof(char*)))){
+            printf("Fehler konnte keine Speicher zu weisen!!\n");
+            exit(EXIT_FAILURE);
+    }
 	char menusel = 0;
 	do {
 		printf("1 Titel hinzufuegen\n");
@@ -47,7 +50,7 @@ int main(void) {
 			deleteItem(list, &count);
 		if (menusel == '3')
 			listprint(list, count);
-	} while (menusel != 'X');
+    } while (menusel != 'X'&&menusel!='x');
 	listfreeallitems(list, count); // Alle Elemente des Arrays loeschen und Speicher freigeben
 	free(list); // Speicher fuer das Array freigeben
 	return 0;
