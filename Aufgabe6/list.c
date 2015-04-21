@@ -42,8 +42,12 @@ int listdeleteitem(char **list,char*item,int*count){
         for(i=find;i<count-1;i++){
             strcpy(list[i],list[i+1]);
         }
+        for(i=0;i<sizeof(list[count])/sizeof(char);i++){
+            free(list[count][i]);
+        }
         free(list[count]);
         list[count]=NULL;
+        *count=*count-1;
         return 1;
     }
     //War nicht in der Liste
@@ -56,6 +60,17 @@ void listprint(char **list,int count){
        printf("%s\n",list[i]);
    }
 }
+
+void listfreealltimes(char **list,int count){
+    int i=0;
+    int j=0;
+    for(i=0;i<count;i++){
+        for(j=0;j<sizeof(list[i])/sizeof(char);j++){
+            free(list[i][j]);
+        }
+    }
+}
+
 
 
 
