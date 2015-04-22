@@ -1,14 +1,12 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
-int listadditem(char ** list,char*item,int*count,int capacity){
-    if(!(listfinditem(list,item,*count))){
-        if(*count==capacity){//Erst prüfen ob noch platz vorhanden ist
-            if(NULL==(list=realloc(list,(capacity+3)*sizeof(char)))){
-                return 0;
-            }
-            capacity+=1;//Erhöhen der Kapazität um einen
-
+int listadditem(char ** list,char *item,int *count,int *capacity){
+    if((listfinditem(list,item,*count))==-1){
+        if(*count== capacity){
+            printf("Die liste ist voll \n");
+            return 0;
         }
         //Speicher alloziieren für den String
         if(NULL==(list[*count]=malloc((sizeof(item)/sizeof(char))*sizeof(char)))){
@@ -32,12 +30,16 @@ int listfinditem(char **list,char *item,int count){
         }
     }
     //...nicht gefunden
-    return 0;
+    return -1;
 }
 
 int listdeleteitem(char **list,char*item,int*count){
     int find=0;
     unsigned int i=0;
+    if(list[0][0]==0){//Sonderfall Liste leer
+        printf("List ist leer");
+        return 0;
+    }
     //Wenn item nicht in der Liste
     if((find=listfinditem(list,item,*count))>=0){
         //Ab dem gefundenem item alle Items einen nach unten schieben letztes wird dann freigegeben

@@ -35,8 +35,9 @@ int main(void) {
             printf("Fehler konnte keine Speicher zu weisen!!\n");
             exit(EXIT_FAILURE);
     }
-	char menusel = 0;
-	do {
+
+    char menusel = 0;
+    do{
 		printf("1 Titel hinzufuegen\n");
 		printf("2 Titel entfernen\n");
 		printf("3 Liste ausgeben\n");
@@ -45,13 +46,13 @@ int main(void) {
 		menusel = getchar();
         while (getchar() != '\n');
 		if (menusel == '1')
-			addItem(list, &count, capacity);
+            addItem(list, &count, capacity);
 		if (menusel == '2')
-			deleteItem(list, &count);
+            deleteItem(list, &count);
 		if (menusel == '3')
-			listprint(list, count);
+            listprint(list, count);
     } while (menusel != 'X'&&menusel!='x');
-	listfreeallitems(list, count); // Alle Elemente des Arrays loeschen und Speicher freigeben
+    listfreeallitems(list, count); // Alle Elemente des Arrays loeschen und Speicher freigeben
     free(list);// Speicher fuer das Array freigeben
     list=NULL;
     return 0;
@@ -62,7 +63,7 @@ void addItem(char** list, int* count, int capacity) {
 	printf("Titel: ");
 	fgets(buffer, 80, stdin);
 	strtok(buffer, "\n");
-	if (!(listadditem(list, buffer, count, capacity)))
+    if (!(listadditem(list, buffer, count, capacity)))
 		printf("Fehler\n");
 }
 
