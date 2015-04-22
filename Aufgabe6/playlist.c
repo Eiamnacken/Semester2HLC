@@ -54,7 +54,7 @@ int main(void) {
 	listfreeallitems(list, count); // Alle Elemente des Arrays loeschen und Speicher freigeben
     free(list);// Speicher fuer das Array freigeben
     list=NULL;
-	return 0;
+    return 0;
 }
 
 void addItem(char** list, int* count, int capacity) {

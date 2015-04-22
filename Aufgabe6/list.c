@@ -7,7 +7,7 @@ int listadditem(char ** list,char*item,int*count,int capacity){
             if(NULL==(list=realloc(list,(capacity+3)*sizeof(char)))){
                 return 0;
             }
-            capacity+=1;//Erhöhen der Kapazität
+            capacity+=1;//Erhöhen der Kapazität um einen
 
         }
         //Speicher alloziieren für den String
@@ -25,13 +25,13 @@ int listfinditem(char **list,char *item,int count){
     int i =0;
     if(count!=0){
         for(i=0;i<count;i++){
-            //Vergleichen bis gefunden anonsten
+            //Vergleichen bis gefunden anonsten ...
             if((strcmp(list[i],item))==0){
                 return i;
             }
         }
     }
-    //nicht gefunden
+    //...nicht gefunden
     return 0;
 }
 
