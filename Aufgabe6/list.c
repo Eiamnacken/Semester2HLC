@@ -1,39 +1,38 @@
 #include <stdlib.h>
 #include <string.h>
 
-int getSize(char *item);
-
 int listadditem(char ** list,char*item,int*count,int capacity){
-    int size = getSize(item);
+    if(!(listfinditem(list,item,*count))){
         if(*count==capacity){//Erst prüfen ob noch platz vorhanden ist
             if(NULL==(list=realloc(list,(capacity+3)*sizeof(char)))){
-                return -1;
+                return 0;
             }
+            capacity+=1;//Erhöhen der Kapazität
 
         }
         //Speicher alloziieren für den String
-        if(NULL==(list[*count]=malloc(size*sizeof(char)))){
-            return -1;
+        if(NULL==(list[*count]=malloc((sizeof(item)/sizeof(char))*sizeof(char)))){
+            return 0;
         }
-        //Checkn ob Item schon vorhanden ist
-        if(!(listfinditem(list,item,count))){
             strcpy(list[*count],item);
             *count=*count+1;
             return 1;//Erfolgreiches Einfügen
-        }
-        return -1;
+    }
+    return 0;
 }
 
 int listfinditem(char **list,char *item,int count){
     int i =0;
-    for(i=0;i<count;i++){
-        //Vergleichen bis gefunden anonsten
-        if(strcmp(list[i],item)){
-            return i;
+    if(count!=0){
+        for(i=0;i<count;i++){
+            //Vergleichen bis gefunden anonsten
+            if((strcmp(list[i],item))==0){
+                return i;
+            }
         }
     }
     //nicht gefunden
-    return -1;
+    return 0;
 }
 
 int listdeleteitem(char **list,char*item,int*count){
@@ -45,8 +44,8 @@ int listdeleteitem(char **list,char*item,int*count){
         for(i=find;i<*count-1;i++){
             strcpy(list[i],list[i+1]);
         }
-        free(list[*count]);
-        list[*count]=NULL;
+        free(list[*count-1]);
+        list[*count-1]=NULL;
         *count=*count-1;
         return 1;
     }
@@ -68,13 +67,6 @@ void listfreeallitems(char **list,int count){
     }
 }
 
-int getSize(char *item){
-    int i=0;
-    while(item[i]!='\0'){
-        i++;
-    }
-    return i;
-}
 
 
 
