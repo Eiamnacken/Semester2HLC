@@ -17,7 +17,7 @@
  * @param count Anzahl der in der Liste gespeicherten Eintraege
  * @param capacity Kapazitaet (Groesse) der Liste
  */
-void addItem(char** list, int* count, int capacity);
+void addItem(char** list, int* count, int *capacity);
 
 /**
  * Liest einen Eintrag von der Konsole ein und loescht ihn aus der Playlist.
@@ -58,7 +58,7 @@ int main(void) {
     return 0;
 }
 
-void addItem(char** list, int* count, int capacity) {
+void addItem(char** list, int* count, int *capacity) {
 	char buffer[80];
 	printf("Titel: ");
 	fgets(buffer, 80, stdin);
