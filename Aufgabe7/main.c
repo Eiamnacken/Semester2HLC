@@ -22,8 +22,7 @@ int main(void) {
 		printf("4) Dequeue and execute\n");
 		printf("X) Exit\n");
 		sel = getchar();
-		while (getchar() != '\n')
-			;
+		while (getchar() != '\n');
 		switch (sel) {
 		case '1':
 			enqueue(queue, printID, "printID");
