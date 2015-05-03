@@ -3,22 +3,13 @@
 #include <stdio.h>
 
 int listadditem(char ** list,char *item,int *count,int *capacity){
-    int **list2;
-    int i=0;
-    if(NULL(list2=malloc((*capacity+1)*sizeof(char*)))){
-        return -1;
-    }
-   for(i=0;i<*count;i++){
-        list2[i]=list[i];
-    }
-
     if((listfinditem(list,item,*count))==-1){
         if(*count== capacity){
             printf("Die liste ist voll \n");
             return 0;
         }
         //Speicher alloziieren für den String
-        if(NULL==(list[*count]=malloc(strlen(item)*sizeof(char)))){
+        if(NULL==(list[*count]=malloc((sizeof(item)/sizeof(char))*sizeof(char)))){
             return 0;
         }
             strcpy(list[*count],item);
@@ -28,10 +19,8 @@ int listadditem(char ** list,char *item,int *count,int *capacity){
     return 0;
 }
 
-
-
 int listfinditem(char **list,char *item,int count){
-    int i =0;//
+    int i =0;
     if(count!=0){
         for(i=0;i<count;i++){
             //Vergleichen bis gefunden anonsten ...
@@ -47,8 +36,8 @@ int listfinditem(char **list,char *item,int count){
 int listdeleteitem(char **list,char*item,int*count){
     int find=0;
     unsigned int i=0;
-    if(list[0][0]==0){//Sonderfall Liste leer da caloc kann auf null prüfen
-        printf("Liste ist leer");
+    if(list[0][0]==0){//Sonderfall Liste leer
+        printf("List ist leer");
         return 0;
     }
     //Wenn item nicht in der Liste
@@ -66,16 +55,12 @@ int listdeleteitem(char **list,char*item,int*count){
     return 0;
 }
 
-
-
 void listprint(char **list,int count){
    int i=0;
    for(i=0;i<count;i++){
-       printf("Titel:%s\n",list[i]);
+       printf("%s\n",list[i]);
    }
 }
-
-
 
 void listfreeallitems(char **list,int count){
     int i=0;
