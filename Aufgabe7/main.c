@@ -12,7 +12,7 @@ int main(void) {
     QueuePtr queue = initQueue();
 	char buffer[20];
 	char sel = 0;
-	while (sel != 'X') {
+    while (sel != 'X'&&sel!='x') {
 		printf("+++ Queue +++\n");
 		printQueue(queue);
 		printf("++++++\n");

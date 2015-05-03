@@ -39,7 +39,7 @@ QueuePtr initQueue();
 
 /**
  * Fuegt einen Task hinten in die Queue ein. Ein Zeiger auf die Funktion und eine
- * Zeichenketter fuer den Namen des Task werden dazu in die Queue eingefuegt.
+ * Zeichenkette fuer den Namen des Task werden dazu in die Queue eingefuegt.
  * Die Zeichenkette wird dazu kopiert. Zu diesem Zweck wird neu ein TaskListNode auf
  * dem Heap angelegt und an die Queue angehaegt. (10 Punkte)
  * @param queue Queue zu der das Element hinzuzufuegen ist
