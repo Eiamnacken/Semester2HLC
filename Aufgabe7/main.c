@@ -21,7 +21,7 @@ int main(void) {
 		printf("3) Enqueue printDate\n");
 		printf("4) Dequeue and execute\n");
 		printf("X) Exit\n");
-		sel = getchar();
+        sel = getchar();
 		while (getchar() != '\n');
 		switch (sel) {
 		case '1':
@@ -35,8 +35,11 @@ int main(void) {
 			break;
 		case '4':
 			dequeue(queue, buffer);
-			printf("Executed: %s\n", buffer);
+            if(buffer[0]!='\0'&&buffer[0]!=NULL){
+                printf("Executed: %s\n",buffer);
+            }
 		}
 	}
+    destroyQueue(queue);
 	return 0;
 }

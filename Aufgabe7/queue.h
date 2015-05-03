@@ -65,8 +65,9 @@ void dequeue(QueuePtr queue, char* taskName);
 void destroyQueue(QueuePtr queue);
 
 /**
+  Gibt die gespeicherten Namen der Tasks aus der Queue aus.
  * TODO Dokumentation (Zusammen 10 Punkte)
- * @param queue
+ * @param queue Die queue in der die Tasks ausgegeben werden sollen
  */
 void printQueue(QueuePtr queue);
 #endif /* QUEUE_H_ */
