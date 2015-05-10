@@ -179,7 +179,23 @@ PtrPruefungen mkPr(char * fach,float note){
  * aufnehmen koennen.
  */
 void mix(char* src1, char* src2, char* dest) {
-
+    size_t size1=sizeof(src1)/sizeof(char);
+    size_t size2=sizeof(src2)/sizeof(char);
+    size_t maxLength;
+    int i=0;
+    int j=0;
+    if(size1<size2) maxLength=size2;
+    else maxLength=size1;
+    for(i=0;i<size1;i++){
+        if(i<size1){
+            dest[j]=src1[i];
+            j++;
+        }
+        if(i<size2){
+            dest[j]=src2[i];
+            j++;
+        }
+    }
 }
 
 // Ende der Aufgaben
@@ -205,6 +221,12 @@ int is42(int x) {
 }
 
 int main(void) {
-    char string[]={"HAAALLOrjvtgtc4rv tg78vcwweffrdfwncrg4q84487wqznc5rc478x9qrnudcz2qxn49uzc4rt84rfqpxorrrrrrrrrRRRRRRRRRRRrrrr"};//R ist richtig :P
+    char string[]={"HAAALLOrjvtgtc4rv!§$%&/()=tg78vcwweffrdfwncrg4q84487wqznc5rc478x9qrnudcz2qxn49uzc4rt84rfqpxorrrrrrrrrRRRRRRRRRRRrrrr"};//R ist richtig :P
     printf("%c\n",findMax(string));
+    char string1[]="Hallo";
+    char string2[]="Meins";
+    char *dest;
+    dest=malloc(strlen((string1)+strlen(string2)+1)*sizeof(char));
+    mix(string1,string2,dest);
+    printf("%s\n",dest);
 }
