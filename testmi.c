@@ -158,12 +158,14 @@ int maxList(Listnode* head) {
 typedef struct pruefungsListe_{
     char fach[50];
     float note;
+    struct pruefungsListe_ *next;
 }Pruefungen;
 
 typedef Pruefungen * PtrPruefungen;
 
-PtrPruefungen mkPr(char * fach,float note){
+PtrPruefungen mkPr(char * fach,float note,PtrPruefungen head){
     PtrPruefungen newPruefung = malloc(sizeof(Pruefungen));
+    newPruefung->next=head;
     strcpy(newPruefung->fach,fach);
     newPruefung->note=note;
     return newPruefung;
@@ -219,12 +221,36 @@ int is42(int x) {
 	return x == 42;
 }
 
+void printList(PtrPruefungen list){
+    while(list!=NULL){
+        printf("%s %f\n",list->fach,list->note);
+        list=list->next;
+    }
+}
+
+void freePruefung(PtrPruefungen head){
+    if(head==NULL){
+        return;
+    }
+    freePruefung(head->next);
+    free(head);
+}
+
 int main(void) {
     char string[]={"HAAALLOrjvtgtc4rv!§$%&/()=tg78vcwweffrdfwncrg4q84487wqznc5rc478x9qrnudcz2qxn49uzc4rt84rfqpxorrrrrrrrrRRRRRRRRRRRrrrr"};//R ist richtig :P
     printf("%c\n",findMax(string));
     char string1[]="Christian";
     char string2[]="Max";
+    char fach[][30]={"Mathe","Irgendwas","Nochwas"};
+    float note[]={1.2,1.3,5.0};
     char *dest;
+    int i=0;
+    PtrPruefungen liste = NULL;
+    for(i=0;i<3;i++){
+        liste=mkPr(fach[i],note[i],liste);
+    }
+    printList(liste);
+    freePruefung(liste);
     dest=malloc(strlen((string1)+strlen(string2)+1)*sizeof(char));
     mix(string1,string2,dest);
     printf("%s\n",dest);
