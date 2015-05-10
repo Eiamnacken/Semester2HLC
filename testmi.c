@@ -158,13 +158,15 @@ int maxList(Listnode* head) {
 typedef struct pruefungsListe_{
     char fach[50];
     float note;
-    struct pruefungsListe_ *next;
 }Pruefungen;
 
 typedef Pruefungen * PtrPruefungen;
 
 PtrPruefungen mkPr(char * fach,float note){
-
+    PtrPruefungen newPruefung = malloc(sizeof(Pruefungen));
+    strcpy(newPruefung->fach,fach);
+    newPruefung->note=note;
+    return newPruefung;
 }
 
 // Aufgabe 7 (20 Bonuspunkte)
@@ -181,12 +183,9 @@ PtrPruefungen mkPr(char * fach,float note){
 void mix(char* src1, char* src2, char* dest) {
     size_t size1=sizeof(src1)/sizeof(char);
     size_t size2=sizeof(src2)/sizeof(char);
-    size_t maxLength;
     int i=0;
     int j=0;
-    if(size1<size2) maxLength=size2;
-    else maxLength=size1;
-    for(i=0;i<size1;i++){
+    for(i=0;i<size1+size2;i++){
         if(i<size1){
             dest[j]=src1[i];
             j++;
