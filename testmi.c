@@ -197,6 +197,7 @@ void mix(char* src1, char* src2, char* dest) {
             j++;
         }
     }
+    dest[j]='\0';
 }
 
 // Ende der Aufgaben
@@ -254,4 +255,5 @@ int main(void) {
     dest=malloc(strlen((string1)+strlen(string2)+1)*sizeof(char));
     mix(string1,string2,dest);
     printf("%s\n",dest);
+    return 0;
 }
