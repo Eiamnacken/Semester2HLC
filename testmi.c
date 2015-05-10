@@ -111,7 +111,7 @@ int capsFile(char* filename) {
     if(file==NULL){
         exit(-1);
     }
-    while(c=fgetc(file)){
+    while((c=fgetc(file))!=EOF){
         if(c>='A'&&c<='Z'){
             big++;
         }
@@ -181,8 +181,8 @@ PtrPruefungen mkPr(char * fach,float note){
  * aufnehmen koennen.
  */
 void mix(char* src1, char* src2, char* dest) {
-    size_t size1=sizeof(src1)/sizeof(char);
-    size_t size2=sizeof(src2)/sizeof(char);
+    size_t size1=strlen(src1);
+    size_t size2=strlen(src2);
     int i=0;
     int j=0;
     for(i=0;i<size1+size2;i++){
@@ -222,8 +222,8 @@ int is42(int x) {
 int main(void) {
     char string[]={"HAAALLOrjvtgtc4rv!§$%&/()=tg78vcwweffrdfwncrg4q84487wqznc5rc478x9qrnudcz2qxn49uzc4rt84rfqpxorrrrrrrrrRRRRRRRRRRRrrrr"};//R ist richtig :P
     printf("%c\n",findMax(string));
-    char string1[]="Hallo";
-    char string2[]="Meins";
+    char string1[]="Christian";
+    char string2[]="Max";
     char *dest;
     dest=malloc(strlen((string1)+strlen(string2)+1)*sizeof(char));
     mix(string1,string2,dest);
