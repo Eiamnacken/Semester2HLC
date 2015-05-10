@@ -32,9 +32,10 @@ char findMax(char s[]) {
     char letter;
     char equal;
     int save=0;
-    int saveLetter=0;
+    int saveLetter;
     for(i=0;i<25;i++){
         equal=(i+'A');
+        saveLetter=0;
         for(j=0;j<strlen(s);j++){
             if(s[j]==equal){
                 saveLetter++;
@@ -43,6 +44,7 @@ char findMax(char s[]) {
         if(save<saveLetter){
             letter=i;
             save=saveLetter;
+            saveLetter=0;
         }
 
     }
