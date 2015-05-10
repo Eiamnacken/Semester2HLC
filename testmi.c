@@ -27,28 +27,26 @@ int is42(int x);
  * @return Haeufigster Buchstabe in s
  */
 char findMax(char s[]) {
+    int letters[26]={0};
     int i=0;
     int j=0;
-    char letter;
-    char equal;
-    int save=0;
-    int saveLetter;
-    for(i=0;i<25;i++){
-        equal=(i+'A');
-        saveLetter=0;
-        for(j=0;j<strlen(s);j++){
-            if(s[j]==equal){
-                saveLetter++;
-            }
+    int max=0;
+    for(i=0;i<strlen(s);i++){
+        if(s[i]>='a'&&s[i]<='z'){
+            letters[s[i]-'a']++;
         }
-        if(save<saveLetter){
-            letter=i;
-            save=saveLetter;
-            saveLetter=0;
+        if(s[i]>='A'&&s[i]<='Z'){
+            letters[s[i]-'A']++;
         }
-
     }
-    return letter+'A';
+    for(i=0;i<26;i++){
+        if(letters[i]>max){
+            max=letters[i];
+            j=i;
+        }
+    }
+    return j+'A';
+
 }
 
 // Aufgabe 2 (10 Punkte)
@@ -207,6 +205,6 @@ int is42(int x) {
 }
 
 int main(void) {
-    char string[]={"HAALLO"};
+    char string[]={"HAAALLOrjvtgtc4rv tg78vcwweffrdfwncrg4q84487wqznc5rc478x9qrnudcz2qxn49uzc4rt84rfqpxorrrrrrrrrRRRRRRRRRRRrrrr"};//R ist richtig :P
     printf("%c\n",findMax(string));
 }
